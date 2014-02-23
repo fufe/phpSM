@@ -6,7 +6,7 @@
         <title>Stream Player - {$app_name}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="{$themepath}/player.css" />
-        <script type="text/javascript" src="jwplayer/jwplayer.js"></script>
+        <script type="text/javascript" src="modules/jwplayer/jwplayer.js"></script>
         <script type="text/javascript">jwplayer.key = "{$jwplayer_key}";</script>        
     </head>
 
