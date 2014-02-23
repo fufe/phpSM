@@ -1,0 +1,35 @@
+/* 
+    Created on : 2014.02.02., 18:20:04
+    Author     : Ferenc
+*/
+
+body {
+    background-color:#666699;
+    font-family: sans-serif;
+    font-size: 0.9em;
+}
+.code {
+    font-family: monospace;
+    font-size: 130%;
+}
+a {
+    color: red;
+    background: white;
+    text-decoration: none;
+}
+#information {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+.spiffy{display:block}
+.spiffy *{
+  display:block;
+  height:1px;
+  overflow:hidden;
+  font-size:.01em;
+  background:#fff}
+
+.spiffyfg{
+    padding:2em;
+    background-color:#fff;
+}
