@@ -23,6 +23,17 @@
                         <li>Most épp senki sem stream-el.</li>
                         {/foreach}
                 </ul>
+            </p>            <p>
+                <caption>Stream szerver "nyitva tartás":</caption>
+                <ul>
+                    <li>H:  18:00 - 06:00</li>
+                    <li>K:  18:00 - 06:00</li>
+                    <li>SZ: 18:00 - 06:00</li>
+                    <li>CS: 18:00 - 06:00</li>
+                    <li>P:  18:00 - 06:00</li>
+                    <li>SZ: 00:00 - 24:00</li>
+                    <li>V:  00:00 - 24:00</li>
+                </ul>
             </p>
         </div>        
         <div id="published_videos">

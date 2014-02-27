@@ -11,7 +11,7 @@
     <body>
         <div id="clan_players">
             <p>Stream-eléshez az alábbi beállításokat kell használni:</p>
-            <p>Server: {$stream_server}</p>
+            <p>Server: {$stream_server}/live</p>
             <p>A stream key felhasználónként változik:</p>
             {foreach from=$clans key=clan_name item=clan}
                 <p>{$clan_name}</p>
