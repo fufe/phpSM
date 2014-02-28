@@ -1,6 +1,7 @@
 <?php
 
 $CONFIG = array(
+    'webserver' => 'http://stream.example.com/',   
     'folder_recorded' => '/var/videos/recorded/',
     'folder_published' => '/var/videos/published/',
     'folder_deleted' => '/var/videos/deleted/',

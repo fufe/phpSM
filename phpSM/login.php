@@ -1,4 +1,5 @@
 <?php
+require 'config.php';
 require 'classes/openid.class.php';
 
 //session_start();
@@ -6,7 +7,7 @@ require 'classes/openid.class.php';
 session_start();
 
 try {
-    $openid = new LightOpenID('http://89.133.153.164/phpSM/login.php');
+    $openid = new LightOpenID($CONFIG['webserver'] . '/phpSM/login.php');
     if(!$openid->mode) {
         $openid->identity = 'https://eu.wargaming.net/id/';
         $openid->required = array('namePerson/friendly');
