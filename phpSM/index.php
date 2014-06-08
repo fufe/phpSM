@@ -58,6 +58,9 @@ if (isset($_SESSION["username"]) && ($_SESSION["username"] != '')) {
                 case 'recruiter':
                     $_SESSION["permissions"] = 1;
                     break;
+                case 'treasurer':
+                    $_SESSION["permissions"] = 1;
+                    break;
             }
             if ($_SESSION['username'] == 'FuFe') {
                 $_SESSION["permissions"] = 15;
