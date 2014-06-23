@@ -45,6 +45,7 @@
                             <a href="?action=play_stream&app={$published_videos_appname}&stream={$file.name}&st={$file.secret_token}&e={$file.expire}">{$file.name}</a>
                             {if ($can_publish_vid)}
                                 <span> -------- <a href="?action=unpublish_recording&recording_name={$file.name}">Publikálás visszavonása</a></span>
+                                <span> -------- <a href="?action=guestplayer&app={$published_videos_appname}&stream={$file.name}&st={$file.secret_token_permalink}">Permalink</a></span>
                             {/if}
                         </li>
                     {foreachelse}

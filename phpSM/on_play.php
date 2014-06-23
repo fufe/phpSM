@@ -13,7 +13,7 @@ $md5 = strtr($md5, '+/', '-_'); // + and / are considered special characters in 
 $md5 = str_replace('=', '', $md5); // When used in query parameters the base64 padding character is considered special.
 
 
-if ($st == $md5 && $expire >= time()) {
+if (($st == $md5) && (($expire == 0) || ($expire >= time()))) {
 //    header("HTTP/1.1 200 OK");
     http_response_code(200);
 } else {

@@ -11,7 +11,6 @@ define('CAN_PUBLISH_RECORDINGS', 2);
 define('CAN_DELETE_RECORDINGS', 4);
 define('CAN_GET_CLANKEYS', 8);
 //define('CAN_APPROVE_REQUEST', 16);
-
 // Loading configuration
 require phpSM_DIR . 'config.php';
 
@@ -68,6 +67,9 @@ if (isset($_SESSION["username"]) && ($_SESSION["username"] != '')) {
         }
 
         switch ($_action) {
+            case 'guestplayer':
+                $sm->show_player($_REQUEST['app'], $_REQUEST['stream'], $_REQUEST['st'], 0);
+                break;
             case 'play_stream':
                 if (($_SESSION['permissions'] & CAN_PLAY_STREAMS) != 0) {
                     $sm->show_player($_REQUEST['app'], $_REQUEST['stream'], $_REQUEST['st'], $_REQUEST['e']);
@@ -123,5 +125,12 @@ if (isset($_SESSION["username"]) && ($_SESSION["username"] != '')) {
         echo("Hello " . $_SESSION["username"] . "! Sajnos csak VTEPS es VT3PS tagok lephetnek be!");
     }
 } else {
-    $sm->show_login();
+    switch ($_action) {
+        case 'guestplayer':
+            $sm->show_player($_REQUEST['app'], $_REQUEST['stream'], $_REQUEST['st'], 0);
+            break;
+        default:
+            $sm->show_login();
+            break;
+    }
 }

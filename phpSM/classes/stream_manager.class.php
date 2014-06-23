@@ -206,7 +206,8 @@ class stream_manager {
                         $name = substr($entry, 0, strlen($entry) - 4);
                         $expire = time() + $this->config['link_time_valid'];
                         $st = $this->getSecretToken($this->config['salt'], $app, $name, $expire);
-                        $recordings[] = array('name' => $name, 'secret_token' => $st, 'expire' => $expire);
+                        $stp = $this->getSecretToken($this->config['salt'], $app, $name, '0');
+                        $recordings[] = array('name' => $name, 'secret_token' => $st, 'secret_token_permalink' => $stp, 'expire' => $expire);
                     }
                 }
                 closedir($handle);
