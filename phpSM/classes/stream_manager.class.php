@@ -75,6 +75,8 @@ class stream_manager {
             $candelete = false;
         }
         $this->tpl->assign('can_delete_vid', $candelete);
+        $canDownload = ($_SESSION['permissions'] & CAN_DOWNLOAD_RECORDINGS) != 0 ? TRUE : FALSE;
+        $this->tpl->assign('can_download_vid', $canDownload);
         $this->tpl->display("dashboard.tpl");
     }
 
@@ -260,6 +262,41 @@ class stream_manager {
         $md5 = strtr($md5, '+/', '-_'); // + and / are considered special characters in URLs, see the wikipedia page linked in references.
         $md5 = str_replace('=', '', $md5); // When used in query parameters the base64 padding character is considered special.
         return $md5;
+    }
+
+    public function downloadFLV($type, $flvName) {
+        switch ($type) {
+            case 'published': $path = $this->config['folder_published'];
+                break;
+            case 'recorded': $path = $this->config['folder_recorded'];
+                break;
+            case 'deleted': $path = $this->config['folder_deleted'];
+                break;
+            default : $path = '';
+        }
+
+        $file = $path . $flvName . '.flv';
+
+        if (file_exists($file) && is_readable($file)) {
+
+            $fsize = filesize($file);
+            
+            header("Content-Disposition: attachment; filename=\"$flvName.flv\"");
+            header("Content-Type: application/octet-stream");
+            header("Content-Length: " . $fsize);
+            ob_flush();
+            flush();
+            
+            set_time_limit(0);
+            $fs = @fopen($file, "rb");
+
+            while (!feof($fs)) {
+                print(@fread($fs, 1024 * 8));
+                ob_flush();
+                flush();
+            }
+            @fclose($fs);
+        }
     }
 
 }

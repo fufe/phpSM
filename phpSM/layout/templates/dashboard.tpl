@@ -47,6 +47,9 @@
                                 <span> -------- <a href="?action=unpublish_recording&recording_name={$file.name}">Publikálás visszavonása</a></span>
                                 <span> -------- <a href="?action=guestplayer&app={$published_videos_appname}&stream={$file.name}&st={$file.secret_token_permalink}">Permalink</a></span>
                             {/if}
+                            {if ($can_download_vid)}
+                                <span> -------- <a href="?action=download&type=published&recording={$file.name}">Letöltés</a></span>
+                            {/if}
                         </li>
                     {foreachelse}
                         <li>Jelenleg nincsenek publikált felvételek.</li>
@@ -66,6 +69,9 @@
                                 {if ($can_delete_vid)}
                                     <span> -------- <a href="?action=delete_recording&recording_name={$file.name}">Törlés</a></span>
                                 {/if}
+                                {if ($can_download_vid)}
+                                    <span> -------- <a href="?action=download&type=recorded&recording={$file.name}">Letöltés</a></span>
+                                {/if}
                             </li>
                         {/foreach}
                     </ul>
@@ -80,6 +86,9 @@
                         {foreach from=$deleted_vids item=file}
                             <li>
                                 {$file.name} <span> -------- <a href="?action=undelete_recording&recording_name={$file.name}">Visszaállítás</a></span>
+                                {if ($can_download_vid)}
+                                    <span> -------- <a href="?action=download&type=deleted&recording={$file.name}">Letöltés</a></span>
+                                {/if}
                             </li>
                         {/foreach}
                     </ul>

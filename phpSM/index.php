@@ -10,7 +10,7 @@ define('CAN_PLAY_STREAMS', 1);
 define('CAN_PUBLISH_RECORDINGS', 2);
 define('CAN_DELETE_RECORDINGS', 4);
 define('CAN_GET_CLANKEYS', 8);
-//define('CAN_APPROVE_REQUEST', 16);
+define('CAN_DOWNLOAD_RECORDINGS', 16);
 // Loading configuration
 require phpSM_DIR . 'config.php';
 
@@ -40,7 +40,7 @@ if (isset($_SESSION["username"]) && ($_SESSION["username"] != '')) {
                     $_SESSION["permissions"] = 1;
                     break;
                 case 'leader':
-                    $_SESSION["permissions"] = 15;
+                    $_SESSION["permissions"] = 31;
                     break;
                 case 'vice_leader':
                     $_SESSION["permissions"] = 1;
@@ -58,11 +58,11 @@ if (isset($_SESSION["username"]) && ($_SESSION["username"] != '')) {
                     $_SESSION["permissions"] = 1;
                     break;
                 case 'treasurer':
-                    $_SESSION["permissions"] = 1;
+                    $_SESSION["permissions"] = 17;
                     break;
             }
             if ($_SESSION['username'] == 'FuFe') {
-                $_SESSION["permissions"] = 15;
+                $_SESSION["permissions"] = 31;
             }
         }
 
@@ -112,6 +112,13 @@ if (isset($_SESSION["username"]) && ($_SESSION["username"] != '')) {
             case 'undelete_recording':
                 if (($_SESSION['permissions'] & CAN_DELETE_RECORDINGS) != 0) {
                     $sm->unDeleteRecording($_REQUEST['recording_name']);
+                } else {
+                    $sm->error("ACCESS DENIED!");
+                }
+                break;
+            case 'download':
+                if (($_SESSION['permissions'] & CAN_DOWNLOAD_RECORDINGS) != 0) {
+                    $sm->downloadFLV($_REQUEST['type'], $_REQUEST['recording']);
                 } else {
                     $sm->error("ACCESS DENIED!");
                 }
